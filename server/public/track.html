@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B0B0C">
+  <meta name="robots" content="noindex">
+  <title>Track your delivery | Helmet Proof</title>
+  <meta name="description" content="See where your rider is, and share your location so they can find you.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="mobile-page" id="main">
+    <header class="mobile-bar">
+      <span class="brand title-3"><i class="ph ph-shield-check" aria-hidden="true"></i> Helmet Proof</span>
+      <span class="tag" id="state-tag">Tracking</span>
+    </header>
+
+    <section class="mobile-head">
+      <a class="back-link caption-1" id="my-deliveries" href="/#/" hidden><i class="ph ph-arrow-left" aria-hidden="true"></i> My deliveries</a>
+      <h1 class="heading-5" id="title">Your delivery</h1>
+      <p class="body-6 muted" id="summary" aria-live="polite">Loading your delivery.</p>
+    </section>
+
+    <div id="content">
+      <div class="map map-mobile" id="map"></div>
+      <div class="legend caption-2">
+        <span><i class="pin pin-rider"></i> Your rider</span>
+        <span><i class="pin pin-destination"></i> Your address</span>
+        <span><i class="pin pin-customer"></i> You, when shared</span>
+      </div>
+
+      <section class="card" id="live-card" hidden aria-labelledby="live-title">
+        <div class="card-head">
+          <h2 class="title-1" id="live-title">Live camera</h2>
+          <span class="badge caption-3 badge-live">Live now</span>
+        </div>
+        <p class="body-6 muted">Your rider's helmet camera is on as they arrive. Watch the handover as it happens.</p>
+        <div id="live-view" hidden></div>
+        <button class="btn btn-primary button-md" type="button" id="watch-live"><i class="ph ph-broadcast" aria-hidden="true"></i> Watch live</button>
+      </section>
+
+      <section class="card" id="share-card" hidden>
+        <h2 class="title-1">Help your rider find you</h2>
+        <p class="body-6 muted">Share your location while you wait, for example if you will meet the rider at the gate. Only this delivery's rider and the delivery company see it, and sharing stops when you close this page.</p>
+        <p class="field-error caption-1" id="share-error" role="alert" hidden></p>
+        <button class="btn btn-primary button-md" type="button" id="share">Share my location</button>
+        <p class="caption-2 muted" id="share-status" aria-live="polite"></p>
+      </section>
+
+      <p class="caption-5 muted numeric" id="updated"></p>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script type="module" src="/track.js"></script>
+</body>
+</html>

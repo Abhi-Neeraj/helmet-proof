@@ -1,0 +1,23 @@
+# Server
+server/data/
+server/.env
+node_modules/
+
+# Tunnel tool (a 55 MB download) and its log
+tunnel/bin/
+tunnel/tunnel.log
+
+# Firmware: the build output, and each helmet's secret and Wi-Fi login
+firmware/build/
+firmware/helmet_cam/secrets.h
+
+# Editors and the operating system
+.DS_Store
+Thumbs.db
+*.log
+
+# Phone app
+mobile/.dart_tool/
+mobile/build/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies

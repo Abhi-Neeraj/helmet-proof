@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B0B0C">
+  <meta name="robots" content="noindex">
+  <title>Rider | Helmet Proof</title>
+  <meta name="description" content="Share your live location while you deliver.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="mobile-page" id="main">
+    <header class="mobile-bar">
+      <span class="brand title-3"><i class="ph ph-shield-check" aria-hidden="true"></i> Helmet Proof</span>
+      <span class="tag">Rider</span>
+    </header>
+
+    <!-- First visit on this phone -->
+    <section class="stack" id="signin" hidden>
+      <div class="mobile-head">
+        <h1 class="heading-5">Rider sign in</h1>
+        <p class="body-6 muted">Open the rider link your manager sent you and you are signed in by itself. Or enter your driver token from Admin &gt; Drivers. This phone remembers it.</p>
+      </div>
+      <form class="auth" id="token-form" novalidate>
+        <label class="sr-only" for="token">Driver token</label>
+        <input class="input body-6" id="token" type="text" placeholder="Driver token" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+        <p class="field-error caption-1" id="token-error" role="alert" hidden></p>
+        <button class="btn btn-primary button-md" type="submit">Continue</button>
+      </form>
+    </section>
+
+    <!-- Signed in -->
+    <section class="stack" id="home" hidden>
+      <div class="mobile-head row-between">
+        <h1 class="heading-5">Hi <em id="driver-name"></em></h1>
+        <button class="btn btn-quiet button-sm" type="button" id="sign-out">Sign out</button>
+      </div>
+
+      <section class="card" aria-labelledby="share-title">
+        <div class="card-head">
+          <h2 class="title-1" id="share-title">Location sharing</h2>
+          <span class="badge caption-3" id="share-badge">Off</span>
+        </div>
+        <p class="body-6 muted" id="share-status">While this page is open and sharing is on, your location goes to the dashboard and to the customer of the delivery you have started. Keep the screen on.</p>
+        <p class="field-error caption-1" id="share-error" role="alert" hidden></p>
+        <button class="btn btn-primary button-md" type="button" id="share">Start sharing</button>
+      </section>
+
+      <section class="card" aria-labelledby="helmet-title">
+        <div class="card-head">
+          <h2 class="title-1" id="helmet-title">Helmet camera</h2>
+          <span class="badge caption-3" id="helmet-badge">Not connected</span>
+        </div>
+        <p class="body-6 muted" id="helmet-status">Connect the helmet so it records by itself within 200 m of each address. Delivered only unlocks while it is recording.</p>
+        <p class="field-error caption-1" id="helmet-error" role="alert" hidden></p>
+        <button class="btn btn-secondary button-md" type="button" id="helmet-connect">Connect helmet</button>
+      </section>
+
+      <div class="map map-mobile" id="map"></div>
+
+      <section class="card" aria-labelledby="list-title">
+        <h2 class="title-1" id="list-title">My deliveries</h2>
+        <div id="list"><div class="skeleton skeleton-row" aria-hidden="true"></div></div>
+      </section>
+
+      <section class="card" id="fail-panel" hidden aria-labelledby="fail-title">
+        <h2 class="title-1" id="fail-title">Could not deliver</h2>
+        <label class="field">
+          <span class="title-4">What happened</span>
+          <textarea class="input body-6" id="fail-reason" maxlength="200" placeholder="Nobody home, wrong address, customer refused"></textarea>
+        </label>
+        <p class="field-error caption-1" id="fail-error" role="alert" hidden></p>
+        <div class="button-row">
+          <button class="btn btn-secondary button-md" type="button" id="fail-cancel">Cancel</button>
+          <button class="btn btn-primary button-md" type="button" id="fail-confirm">Confirm</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div class="toast body-5" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script type="module" src="/driver.js"></script>
+</body>
+</html>

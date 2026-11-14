@@ -1,0 +1,26 @@
+name: helmet_proof_driver
+description: Driver app for helmet camera proof of delivery.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Kept below 1.36 on purpose: later releases change the connect() call.
+  flutter_blue_plus: ">=1.34.0 <1.36.0"
+  geolocator: ^13.0.2
+  geolocator_android: ^4.6.1
+  permission_handler: ^11.3.1
+  http: ^1.2.2
+  shared_preferences: ^2.3.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
